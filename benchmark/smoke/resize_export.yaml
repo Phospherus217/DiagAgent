@@ -1,0 +1,17 @@
+schema_version: "2.0"
+task_id: da_smoke_resize_export
+task_family: canvas_geometry
+difficulty: easy
+instruction: "Resize the input to exactly 512x512 pixels, allowing aspect ratio change, and export PNG."
+initial_asset: ../assets/input_001.jpg
+allowed_observations: [screenshot, manual_ui_bbox]
+allowed_actions: [resize_image, export_file, wait, stop]
+max_steps: 8
+output_name: output.png
+reference_actions:
+  - {type: resize_image, width: 512, height: 512}
+  - {type: export_file, path: output.png}
+evaluation:
+  required_subgoals: [image_loaded, artifact_exported]
+  checkpoints: [resize_effect]
+  final: {exists: true, nonempty: true, format: PNG, size: [512, 512]}

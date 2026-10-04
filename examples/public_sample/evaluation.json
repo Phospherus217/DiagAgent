@@ -1,0 +1,154 @@
+{
+  "evaluator_version": "v2-evidence",
+  "steps": [
+    {
+      "step": 1,
+      "status": null,
+      "subgoal_id": "open_image",
+      "subgoal_completed": true,
+      "diagnostic_signals": {
+        "action_valid": true,
+        "action_executable": true,
+        "target_hit": true,
+        "tool_match": true,
+        "parameter_match": true,
+        "dialog_confirmed": true,
+        "state_changed": null,
+        "subgoal_completed": true
+      },
+      "error_type": null,
+      "evidence": {},
+      "note": "Input image is loaded in GIMP canvas."
+    },
+    {
+      "step": 2,
+      "status": null,
+      "subgoal_id": "resize_image",
+      "subgoal_completed": false,
+      "diagnostic_signals": {
+        "action_valid": true,
+        "action_executable": true,
+        "target_hit": true,
+        "tool_match": true,
+        "parameter_match": false,
+        "dialog_confirmed": true,
+        "state_changed": true,
+        "subgoal_completed": false
+      },
+      "error_type": "Parameter Error",
+      "evidence": {
+        "expected_width": 512,
+        "actual_width": 256,
+        "expected_height": 512,
+        "actual_height": 256
+      },
+      "note": "Parameter mismatch: {'expected_width': 512, 'actual_width': 256, 'expected_height': 512, 'actual_height': 256}"
+    },
+    {
+      "step": 3,
+      "status": null,
+      "subgoal_id": "export_png",
+      "subgoal_completed": true,
+      "diagnostic_signals": {
+        "action_valid": true,
+        "action_executable": true,
+        "target_hit": true,
+        "tool_match": true,
+        "parameter_match": true,
+        "dialog_confirmed": true,
+        "state_changed": true,
+        "subgoal_completed": true
+      },
+      "error_type": null,
+      "evidence": {},
+      "note": null
+    }
+  ],
+  "predicates": {},
+  "artifact": {
+    "artifact_pass": false,
+    "status": "FAIL",
+    "checks": [
+      {
+        "name": "exists",
+        "status": "PASS",
+        "expected": true,
+        "actual": true,
+        "method": "filesystem",
+        "required": true,
+        "applicable": true,
+        "evidence_refs": [
+          "artifacts/output.png"
+        ]
+      },
+      {
+        "name": "nonempty",
+        "status": "PASS",
+        "expected": true,
+        "actual": true,
+        "method": "filesystem",
+        "required": true,
+        "applicable": true,
+        "evidence_refs": [
+          "artifacts/output.png"
+        ]
+      },
+      {
+        "name": "decodable",
+        "status": "PASS",
+        "expected": true,
+        "actual": true,
+        "method": "file_decode",
+        "required": true,
+        "applicable": true,
+        "evidence_refs": [
+          "artifacts/output.png"
+        ]
+      },
+      {
+        "name": "format",
+        "status": "PASS",
+        "expected": "png",
+        "actual": "png",
+        "method": "file_decode",
+        "required": true,
+        "applicable": true,
+        "evidence_refs": [
+          "artifacts/output.png"
+        ]
+      },
+      {
+        "name": "size",
+        "status": "FAIL",
+        "expected": [
+          512,
+          512
+        ],
+        "actual": [
+          256,
+          256
+        ],
+        "method": "file_decode",
+        "required": true,
+        "applicable": true,
+        "evidence_refs": [
+          "artifacts/output.png"
+        ]
+      }
+    ],
+    "output_exists": true,
+    "file_nonempty": true,
+    "format_correct": true,
+    "size_correct": false,
+    "content_correct": true,
+    "error_type": "Artifact Error",
+    "metrics": {
+      "format": "png",
+      "size": [
+        256,
+        256
+      ]
+    },
+    "note": "Required artifact checks: FAIL"
+  }
+}

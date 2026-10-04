@@ -1,0 +1,49 @@
+task_id: diag_01_resize
+app: gimp
+task_family: canvas_geometry
+capability: Parameter Understanding
+difficulty: easy
+instruction: "Open the input image, resize it to 512x512 pixels, and export it as PNG."
+initial_state:
+  input_file: benchmark/assets/input_001.jpg
+  output_file: output.png
+  window_size: [1280, 720]
+allowed_actions:
+  - open_menu
+  - set_dialog_field
+  - click_dialog_button
+  - resize_image
+  - export_file
+  - wait
+  - stop
+subgoals:
+  - id: open_image
+    order: 1
+    type: ui_state
+    description: "Input image is loaded in GIMP canvas."
+    expected_state:
+      image_loaded: true
+  - id: resize_image
+    order: 2
+    type: parameter
+    description: "Image geometry is resized to 512x512."
+    expected_action:
+      action_type: [resize_image]
+    expected_state:
+      width: 512
+      height: 512
+  - id: export_png
+    order: 3
+    type: artifact
+    description: "Resized image is exported as PNG."
+    expected_artifact:
+      exists: true
+      format: png
+      size: [512, 512]
+success_criteria:
+  final:
+    output_exists: true
+    output_format: png
+    output_size: [512, 512]
+    file_nonempty: true
+max_steps: 10

@@ -1,0 +1,1660 @@
+{
+  "schema_version": "0.3",
+  "run_id": "public_sample",
+  "nodes": [
+    {
+      "id": "task_goal",
+      "type": "Task Goal",
+      "label": "diag_01_resize",
+      "evidence": {
+        "run_id": "public_sample",
+        "requirements": {
+          "task_id": "diag_01_resize",
+          "instruction": "Open the input image, resize it to 512x512 pixels, and export it as PNG.",
+          "allowed_actions": [
+            "open_menu",
+            "set_dialog_field",
+            "click_dialog_button",
+            "resize_image",
+            "export_file",
+            "wait",
+            "stop"
+          ],
+          "max_steps": 10
+        }
+      }
+    },
+    {
+      "id": "subgoal_open_image",
+      "type": "Subgoal",
+      "label": "open_image",
+      "evidence": {
+        "step": 1
+      }
+    },
+    {
+      "id": "state_1_after",
+      "type": "State",
+      "label": "step 1 after",
+      "evidence": {
+        "step": 1,
+        "phase": "after",
+        "screenshot": "screenshots/step_001_reset.png",
+        "ui_state": {
+          "image_loaded": true,
+          "active_tool": null,
+          "active_dialog": null,
+          "dialog_confirmed": null,
+          "image_size": [
+            800,
+            600
+          ],
+          "foreground_color": "#000000",
+          "layers": [
+            {
+              "name": "Background",
+              "visible": true,
+              "active": true,
+              "opacity": 100
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "subgoal_resize_image",
+      "type": "Subgoal",
+      "label": "resize_image",
+      "evidence": {
+        "step": 2
+      }
+    },
+    {
+      "id": "action_2",
+      "type": "Action",
+      "label": "resize_image",
+      "evidence": {
+        "step": 2,
+        "action": {
+          "type": "resize_image",
+          "width": 256,
+          "height": 256,
+          "unit": "px"
+        }
+      }
+    },
+    {
+      "id": "state_2_before",
+      "type": "State",
+      "label": "step 2 before",
+      "evidence": {
+        "step": 2,
+        "phase": "before",
+        "screenshot": "screenshots/step_001_reset.png",
+        "ui_state": {
+          "image_loaded": true,
+          "active_tool": null,
+          "active_dialog": null,
+          "dialog_confirmed": null,
+          "image_size": [
+            800,
+            600
+          ],
+          "foreground_color": "#000000",
+          "layers": [
+            {
+              "name": "Background",
+              "visible": true,
+              "active": true,
+              "opacity": 100
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "state_2_after",
+      "type": "State",
+      "label": "step 2 after",
+      "evidence": {
+        "step": 2,
+        "phase": "after",
+        "screenshot": "screenshots/step_002_step.png",
+        "ui_state": {
+          "image_loaded": true,
+          "active_tool": null,
+          "active_dialog": null,
+          "dialog_confirmed": true,
+          "image_size": [
+            256,
+            256
+          ],
+          "foreground_color": "#000000",
+          "layers": [
+            {
+              "name": "Background",
+              "visible": true,
+              "active": true,
+              "opacity": 100
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "failure_2",
+      "type": "Failure",
+      "label": "Parameter Error",
+      "evidence": {
+        "step": 2,
+        "confidence": "high",
+        "evidence": [
+          {
+            "source": "trace.jsonl",
+            "line": 2,
+            "content": {
+              "error_type": "Parameter Error",
+              "step_eval": {
+                "step": 2,
+                "status": null,
+                "subgoal_id": "resize_image",
+                "subgoal_completed": false,
+                "diagnostic_signals": {
+                  "action_valid": true,
+                  "action_executable": true,
+                  "target_hit": true,
+                  "tool_match": true,
+                  "parameter_match": false,
+                  "dialog_confirmed": true,
+                  "state_changed": true,
+                  "subgoal_completed": false
+                },
+                "error_type": "Parameter Error",
+                "evidence": {
+                  "expected_width": 512,
+                  "actual_width": 256,
+                  "expected_height": 512,
+                  "actual_height": 256
+                },
+                "note": "Parameter mismatch: {'expected_width': 512, 'actual_width': 256, 'expected_height': 512, 'actual_height': 256}"
+              },
+              "execution_result": {
+                "success": true,
+                "action_executable": true,
+                "state_changed": true,
+                "effect_status": "PASS",
+                "effect_evidence": {
+                  "status": "PASS",
+                  "source": "mock_internal"
+                },
+                "primitive_results": [
+                  {
+                    "action": {
+                      "type": "open_menu",
+                      "path": "Image->Scale Image..."
+                    },
+                    "success": true,
+                    "state_changed": true,
+                    "dispatched": false,
+                    "effect_status": "UNKNOWN",
+                    "action_executable": true,
+                    "error_type": null,
+                    "error_message": null,
+                    "duration_ms": 0.0,
+                    "metadata": {
+                      "backend_message": "Atomic action executed"
+                    }
+                  },
+                  {
+                    "action": {
+                      "type": "wait",
+                      "duration": 0.5
+                    },
+                    "success": true,
+                    "state_changed": false,
+                    "dispatched": false,
+                    "effect_status": "UNKNOWN",
+                    "action_executable": true,
+                    "error_type": null,
+                    "error_message": null,
+                    "duration_ms": 0.0,
+                    "metadata": {
+                      "backend_message": "Waited"
+                    }
+                  },
+                  {
+                    "action": {
+                      "type": "set_dialog_field",
+                      "dialog": "Scale Image",
+                      "field": "Width",
+                      "value": 256
+                    },
+                    "success": true,
+                    "state_changed": true,
+                    "dispatched": false,
+                    "effect_status": "UNKNOWN",
+                    "action_executable": true,
+                    "error_type": null,
+                    "error_message": null,
+                    "duration_ms": 0.0,
+                    "metadata": {
+                      "backend_message": "Dialog field updated"
+                    }
+                  },
+                  {
+                    "action": {
+                      "type": "set_dialog_field",
+                      "dialog": "Scale Image",
+                      "field": "Height",
+                      "value": 256
+                    },
+                    "success": true,
+                    "state_changed": true,
+                    "dispatched": false,
+                    "effect_status": "UNKNOWN",
+                    "action_executable": true,
+                    "error_type": null,
+                    "error_message": null,
+                    "duration_ms": 0.0,
+                    "metadata": {
+                      "backend_message": "Dialog field updated"
+                    }
+                  },
+                  {
+                    "action": {
+                      "type": "click_dialog_button",
+                      "dialog": "Scale Image",
+                      "button": "Scale"
+                    },
+                    "success": true,
+                    "state_changed": true,
+                    "dispatched": false,
+                    "effect_status": "UNKNOWN",
+                    "action_executable": true,
+                    "error_type": null,
+                    "error_message": null,
+                    "duration_ms": 0.0,
+                    "metadata": {
+                      "backend_message": "Clicked scale"
+                    }
+                  },
+                  {
+                    "action": {
+                      "type": "wait",
+                      "duration": 0.5
+                    },
+                    "success": true,
+                    "state_changed": false,
+                    "dispatched": false,
+                    "effect_status": "UNKNOWN",
+                    "action_executable": true,
+                    "error_type": null,
+                    "error_message": null,
+                    "duration_ms": 0.0,
+                    "metadata": {
+                      "backend_message": "Waited"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "subgoal_export_png",
+      "type": "Subgoal",
+      "label": "export_png",
+      "evidence": {
+        "step": 3
+      }
+    },
+    {
+      "id": "action_3",
+      "type": "Action",
+      "label": "export_file",
+      "evidence": {
+        "step": 3,
+        "action": {
+          "type": "export_file",
+          "path": "output.png",
+          "format": "png",
+          "overwrite": true
+        }
+      }
+    },
+    {
+      "id": "state_3_before",
+      "type": "State",
+      "label": "step 3 before",
+      "evidence": {
+        "step": 3,
+        "phase": "before",
+        "screenshot": "screenshots/step_002_step.png",
+        "ui_state": {
+          "image_loaded": true,
+          "active_tool": null,
+          "active_dialog": null,
+          "dialog_confirmed": true,
+          "image_size": [
+            256,
+            256
+          ],
+          "foreground_color": "#000000",
+          "layers": [
+            {
+              "name": "Background",
+              "visible": true,
+              "active": true,
+              "opacity": 100
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "state_3_after",
+      "type": "State",
+      "label": "step 3 after",
+      "evidence": {
+        "step": 3,
+        "phase": "after",
+        "screenshot": "screenshots/step_003_step.png",
+        "ui_state": {
+          "image_loaded": true,
+          "active_tool": null,
+          "active_dialog": null,
+          "dialog_confirmed": true,
+          "image_size": [
+            256,
+            256
+          ],
+          "foreground_color": "#000000",
+          "layers": [
+            {
+              "name": "Background",
+              "visible": true,
+              "active": true,
+              "opacity": 100
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "subgoal_step_4",
+      "type": "Subgoal",
+      "label": "step_4",
+      "evidence": {
+        "step": 4
+      }
+    },
+    {
+      "id": "action_4",
+      "type": "Action",
+      "label": "stop",
+      "evidence": {
+        "step": 4,
+        "action": {
+          "type": "stop",
+          "message": null
+        }
+      }
+    },
+    {
+      "id": "state_4_before",
+      "type": "State",
+      "label": "step 4 before",
+      "evidence": {
+        "step": 4,
+        "phase": "before",
+        "screenshot": "screenshots/step_003_step.png",
+        "ui_state": {
+          "image_loaded": true,
+          "active_tool": null,
+          "active_dialog": null,
+          "dialog_confirmed": true,
+          "image_size": [
+            256,
+            256
+          ],
+          "foreground_color": "#000000",
+          "layers": [
+            {
+              "name": "Background",
+              "visible": true,
+              "active": true,
+              "opacity": 100
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "state_4_after",
+      "type": "State",
+      "label": "step 4 after",
+      "evidence": {
+        "step": 4,
+        "phase": "after",
+        "screenshot": "screenshots/step_004_final.png",
+        "ui_state": {
+          "image_loaded": true,
+          "active_tool": null,
+          "active_dialog": null,
+          "dialog_confirmed": true,
+          "image_size": [
+            256,
+            256
+          ],
+          "foreground_color": "#000000",
+          "layers": [
+            {
+              "name": "Background",
+              "visible": true,
+              "active": true,
+              "opacity": 100
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "artifact_final",
+      "type": "Artifact",
+      "label": "artifacts/output.png",
+      "evidence": {
+        "result": {
+          "artifact_pass": false,
+          "status": "FAIL",
+          "checks": [
+            {
+              "name": "exists",
+              "status": "PASS",
+              "expected": true,
+              "actual": true,
+              "method": "filesystem",
+              "required": true,
+              "applicable": true,
+              "evidence_refs": [
+                "artifacts/output.png"
+              ]
+            },
+            {
+              "name": "nonempty",
+              "status": "PASS",
+              "expected": true,
+              "actual": true,
+              "method": "filesystem",
+              "required": true,
+              "applicable": true,
+              "evidence_refs": [
+                "artifacts/output.png"
+              ]
+            },
+            {
+              "name": "decodable",
+              "status": "PASS",
+              "expected": true,
+              "actual": true,
+              "method": "file_decode",
+              "required": true,
+              "applicable": true,
+              "evidence_refs": [
+                "artifacts/output.png"
+              ]
+            },
+            {
+              "name": "format",
+              "status": "PASS",
+              "expected": "png",
+              "actual": "png",
+              "method": "file_decode",
+              "required": true,
+              "applicable": true,
+              "evidence_refs": [
+                "artifacts/output.png"
+              ]
+            },
+            {
+              "name": "size",
+              "status": "FAIL",
+              "expected": [
+                512,
+                512
+              ],
+              "actual": [
+                256,
+                256
+              ],
+              "method": "file_decode",
+              "required": true,
+              "applicable": true,
+              "evidence_refs": [
+                "artifacts/output.png"
+              ]
+            }
+          ],
+          "output_exists": true,
+          "file_nonempty": true,
+          "format_correct": true,
+          "size_correct": false,
+          "content_correct": true,
+          "error_type": "Artifact Error",
+          "metrics": {
+            "format": "png",
+            "size": [
+              256,
+              256
+            ]
+          },
+          "note": "Required artifact checks: FAIL"
+        }
+      }
+    },
+    {
+      "id": "execution_0",
+      "type": "Execution Event",
+      "label": "run_started",
+      "evidence": {
+        "event_seq": 1,
+        "event": "run_started",
+        "timestamp": "2026-10-04T12:08:15.473562+00:00",
+        "backend": "mock",
+        "agent_type": "oracle",
+        "_source": "events.jsonl",
+        "_line": 1
+      }
+    },
+    {
+      "id": "execution_1",
+      "type": "Execution Event",
+      "label": "decision_started",
+      "evidence": {
+        "event_seq": 2,
+        "event": "decision_started",
+        "timestamp": "2026-10-04T12:08:15.530299+00:00",
+        "next_step": 2,
+        "_source": "events.jsonl",
+        "_line": 2
+      }
+    },
+    {
+      "id": "execution_2",
+      "type": "Execution Event",
+      "label": "action_received",
+      "evidence": {
+        "event_seq": 3,
+        "event": "action_received",
+        "timestamp": "2026-10-04T12:08:15.530299+00:00",
+        "step": 2,
+        "raw_action": {
+          "type": "resize_image",
+          "width": 256,
+          "height": 256,
+          "unit": "px"
+        },
+        "_source": "events.jsonl",
+        "_line": 3
+      }
+    },
+    {
+      "id": "execution_3",
+      "type": "Execution Event",
+      "label": "action_validated",
+      "evidence": {
+        "event_seq": 4,
+        "event": "action_validated",
+        "timestamp": "2026-10-04T12:08:15.531303+00:00",
+        "step": 2,
+        "status": "SUCCEEDED",
+        "parsed_action": {
+          "type": "resize_image",
+          "width": 256,
+          "height": 256,
+          "unit": "px"
+        },
+        "_source": "events.jsonl",
+        "_line": 4
+      }
+    },
+    {
+      "id": "execution_4",
+      "type": "Execution Event",
+      "label": "runtime_verification",
+      "evidence": {
+        "event_seq": 5,
+        "event": "runtime_verification",
+        "timestamp": "2026-10-04T12:08:15.548838+00:00",
+        "step": 2,
+        "verification": {
+          "passed": true,
+          "signals": {
+            "action_type": "resize_image",
+            "execution_success": true,
+            "state_changed": true
+          },
+          "suspected_failure": null,
+          "evidence": []
+        },
+        "status": "SUCCEEDED",
+        "latency_ms": 16,
+        "_source": "events.jsonl",
+        "_line": 5
+      }
+    },
+    {
+      "id": "execution_5",
+      "type": "Execution Event",
+      "label": "decision_started",
+      "evidence": {
+        "event_seq": 6,
+        "event": "decision_started",
+        "timestamp": "2026-10-04T12:08:15.548838+00:00",
+        "next_step": 3,
+        "_source": "events.jsonl",
+        "_line": 6
+      }
+    },
+    {
+      "id": "execution_6",
+      "type": "Execution Event",
+      "label": "action_received",
+      "evidence": {
+        "event_seq": 7,
+        "event": "action_received",
+        "timestamp": "2026-10-04T12:08:15.549849+00:00",
+        "step": 3,
+        "raw_action": {
+          "type": "export_file",
+          "path": "output.png",
+          "format": "png",
+          "overwrite": true
+        },
+        "_source": "events.jsonl",
+        "_line": 7
+      }
+    },
+    {
+      "id": "execution_7",
+      "type": "Execution Event",
+      "label": "action_validated",
+      "evidence": {
+        "event_seq": 8,
+        "event": "action_validated",
+        "timestamp": "2026-10-04T12:08:15.549849+00:00",
+        "step": 3,
+        "status": "SUCCEEDED",
+        "parsed_action": {
+          "type": "export_file",
+          "path": "output.png",
+          "format": "png",
+          "overwrite": true
+        },
+        "_source": "events.jsonl",
+        "_line": 8
+      }
+    },
+    {
+      "id": "execution_8",
+      "type": "Execution Event",
+      "label": "runtime_verification",
+      "evidence": {
+        "event_seq": 9,
+        "event": "runtime_verification",
+        "timestamp": "2026-10-04T12:08:15.570519+00:00",
+        "step": 3,
+        "verification": {
+          "passed": true,
+          "signals": {
+            "action_type": "export_file",
+            "execution_success": true,
+            "state_changed": true
+          },
+          "suspected_failure": null,
+          "evidence": []
+        },
+        "status": "SUCCEEDED",
+        "latency_ms": 16,
+        "_source": "events.jsonl",
+        "_line": 9
+      }
+    },
+    {
+      "id": "execution_9",
+      "type": "Execution Event",
+      "label": "artifact_completion_checked",
+      "evidence": {
+        "event_seq": 10,
+        "event": "artifact_completion_checked",
+        "timestamp": "2026-10-04T12:08:15.583545+00:00",
+        "step": 3,
+        "artifact_evaluation": {
+          "artifact_pass": false,
+          "status": "FAIL",
+          "checks": [
+            {
+              "name": "exists",
+              "status": "PASS",
+              "expected": true,
+              "actual": true,
+              "method": "filesystem",
+              "required": true,
+              "applicable": true,
+              "evidence_refs": [
+                "artifacts/output.png"
+              ]
+            },
+            {
+              "name": "nonempty",
+              "status": "PASS",
+              "expected": true,
+              "actual": true,
+              "method": "filesystem",
+              "required": true,
+              "applicable": true,
+              "evidence_refs": [
+                "artifacts/output.png"
+              ]
+            },
+            {
+              "name": "decodable",
+              "status": "PASS",
+              "expected": true,
+              "actual": true,
+              "method": "file_decode",
+              "required": true,
+              "applicable": true,
+              "evidence_refs": [
+                "artifacts/output.png"
+              ]
+            },
+            {
+              "name": "format",
+              "status": "PASS",
+              "expected": "png",
+              "actual": "png",
+              "method": "file_decode",
+              "required": true,
+              "applicable": true,
+              "evidence_refs": [
+                "artifacts/output.png"
+              ]
+            },
+            {
+              "name": "size",
+              "status": "FAIL",
+              "expected": [
+                512,
+                512
+              ],
+              "actual": [
+                256,
+                256
+              ],
+              "method": "file_decode",
+              "required": true,
+              "applicable": true,
+              "evidence_refs": [
+                "artifacts/output.png"
+              ]
+            }
+          ],
+          "output_exists": true,
+          "file_nonempty": true,
+          "format_correct": true,
+          "size_correct": false,
+          "content_correct": true,
+          "error_type": "Artifact Error",
+          "metrics": {
+            "format": "png",
+            "size": [
+              256,
+              256
+            ]
+          },
+          "note": "Required artifact checks: FAIL"
+        },
+        "_source": "events.jsonl",
+        "_line": 10
+      }
+    },
+    {
+      "id": "execution_10",
+      "type": "Execution Event",
+      "label": "decision_started",
+      "evidence": {
+        "event_seq": 11,
+        "event": "decision_started",
+        "timestamp": "2026-10-04T12:08:15.584540+00:00",
+        "next_step": 4,
+        "_source": "events.jsonl",
+        "_line": 11
+      }
+    },
+    {
+      "id": "execution_11",
+      "type": "Execution Event",
+      "label": "action_received",
+      "evidence": {
+        "event_seq": 12,
+        "event": "action_received",
+        "timestamp": "2026-10-04T12:08:15.585538+00:00",
+        "step": 4,
+        "raw_action": {
+          "type": "stop",
+          "message": null
+        },
+        "_source": "events.jsonl",
+        "_line": 12
+      }
+    },
+    {
+      "id": "execution_12",
+      "type": "Execution Event",
+      "label": "action_validated",
+      "evidence": {
+        "event_seq": 13,
+        "event": "action_validated",
+        "timestamp": "2026-10-04T12:08:15.585538+00:00",
+        "step": 4,
+        "status": "SUCCEEDED",
+        "parsed_action": {
+          "type": "stop",
+          "message": null
+        },
+        "_source": "events.jsonl",
+        "_line": 13
+      }
+    },
+    {
+      "id": "execution_13",
+      "type": "Execution Event",
+      "label": "runtime_verification",
+      "evidence": {
+        "event_seq": 14,
+        "event": "runtime_verification",
+        "timestamp": "2026-10-04T12:08:15.597622+00:00",
+        "step": 4,
+        "verification": {
+          "passed": true,
+          "signals": {
+            "action_type": "stop",
+            "execution_success": true,
+            "state_changed": true
+          },
+          "suspected_failure": null,
+          "evidence": []
+        },
+        "status": "SUCCEEDED",
+        "latency_ms": 16,
+        "_source": "events.jsonl",
+        "_line": 14
+      }
+    },
+    {
+      "id": "execution_14",
+      "type": "Execution Event",
+      "label": "artifact_evaluated",
+      "evidence": {
+        "event_seq": 15,
+        "event": "artifact_evaluated",
+        "timestamp": "2026-10-04T12:08:15.623745+00:00",
+        "step": 4,
+        "artifact_evaluation": {
+          "artifact_pass": false,
+          "status": "FAIL",
+          "checks": [
+            {
+              "name": "exists",
+              "status": "PASS",
+              "expected": true,
+              "actual": true,
+              "method": "filesystem",
+              "required": true,
+              "applicable": true,
+              "evidence_refs": [
+                "artifacts/output.png"
+              ]
+            },
+            {
+              "name": "nonempty",
+              "status": "PASS",
+              "expected": true,
+              "actual": true,
+              "method": "filesystem",
+              "required": true,
+              "applicable": true,
+              "evidence_refs": [
+                "artifacts/output.png"
+              ]
+            },
+            {
+              "name": "decodable",
+              "status": "PASS",
+              "expected": true,
+              "actual": true,
+              "method": "file_decode",
+              "required": true,
+              "applicable": true,
+              "evidence_refs": [
+                "artifacts/output.png"
+              ]
+            },
+            {
+              "name": "format",
+              "status": "PASS",
+              "expected": "png",
+              "actual": "png",
+              "method": "file_decode",
+              "required": true,
+              "applicable": true,
+              "evidence_refs": [
+                "artifacts/output.png"
+              ]
+            },
+            {
+              "name": "size",
+              "status": "FAIL",
+              "expected": [
+                512,
+                512
+              ],
+              "actual": [
+                256,
+                256
+              ],
+              "method": "file_decode",
+              "required": true,
+              "applicable": true,
+              "evidence_refs": [
+                "artifacts/output.png"
+              ]
+            }
+          ],
+          "output_exists": true,
+          "file_nonempty": true,
+          "format_correct": true,
+          "size_correct": false,
+          "content_correct": true,
+          "error_type": "Artifact Error",
+          "metrics": {
+            "format": "png",
+            "size": [
+              256,
+              256
+            ]
+          },
+          "note": "Required artifact checks: FAIL"
+        },
+        "status": "FAIL",
+        "artifact_path": "artifacts/output.png",
+        "_source": "events.jsonl",
+        "_line": 15
+      }
+    },
+    {
+      "id": "execution_15",
+      "type": "Execution Event",
+      "label": "run_finished",
+      "evidence": {
+        "event_seq": 16,
+        "event": "run_finished",
+        "timestamp": "2026-10-04T12:08:15.627775+00:00",
+        "step": 4,
+        "success": false,
+        "termination_reason": "agent_stop",
+        "_source": "events.jsonl",
+        "_line": 16
+      }
+    },
+    {
+      "id": "diagnosis",
+      "type": "Diagnosis",
+      "label": "Parameter Error",
+      "evidence": {
+        "diagnosis_version": "0.2",
+        "diagnosis_id": "ca62df3f83b8a432c121b1a82b3c3a0e3028d4f9a77a979e398ad8277c74de2f",
+        "run_id": "public_sample",
+        "first_failure_step": 2,
+        "failure_type": "Parameter Error",
+        "responsibility": {
+          "primary": "Agent",
+          "confidence": 0.95,
+          "alternatives": []
+        },
+        "suggested_repair": "Regenerate action with required, valid parameters.",
+        "warnings": [],
+        "failure": true,
+        "step": 2,
+        "type": "Parameter Error",
+        "layer": "Agent",
+        "confidence": "high",
+        "confidence_score": 0.92,
+        "explanation": "Failure happened at Step 2. Evidence source: trace.jsonl",
+        "v02_attribution": {
+          "failure_layer": "ACTION",
+          "responsibility": "Agent",
+          "evidence": [
+            {
+              "source": "trace.jsonl",
+              "line": 2,
+              "content": {
+                "error_type": "Parameter Error",
+                "step_eval": {
+                  "step": 2,
+                  "status": null,
+                  "subgoal_id": "resize_image",
+                  "subgoal_completed": false,
+                  "diagnostic_signals": {
+                    "action_valid": true,
+                    "action_executable": true,
+                    "target_hit": true,
+                    "tool_match": true,
+                    "parameter_match": false,
+                    "dialog_confirmed": true,
+                    "state_changed": true,
+                    "subgoal_completed": false
+                  },
+                  "error_type": "Parameter Error",
+                  "evidence": {
+                    "expected_width": 512,
+                    "actual_width": 256,
+                    "expected_height": 512,
+                    "actual_height": 256
+                  },
+                  "note": "Parameter mismatch: {'expected_width': 512, 'actual_width': 256, 'expected_height': 512, 'actual_height': 256}"
+                },
+                "execution_result": {
+                  "success": true,
+                  "action_executable": true,
+                  "state_changed": true,
+                  "effect_status": "PASS",
+                  "effect_evidence": {
+                    "status": "PASS",
+                    "source": "mock_internal"
+                  },
+                  "primitive_results": [
+                    {
+                      "action": {
+                        "type": "open_menu",
+                        "path": "Image->Scale Image..."
+                      },
+                      "success": true,
+                      "state_changed": true,
+                      "dispatched": false,
+                      "effect_status": "UNKNOWN",
+                      "action_executable": true,
+                      "error_type": null,
+                      "error_message": null,
+                      "duration_ms": 0.0,
+                      "metadata": {
+                        "backend_message": "Atomic action executed"
+                      }
+                    },
+                    {
+                      "action": {
+                        "type": "wait",
+                        "duration": 0.5
+                      },
+                      "success": true,
+                      "state_changed": false,
+                      "dispatched": false,
+                      "effect_status": "UNKNOWN",
+                      "action_executable": true,
+                      "error_type": null,
+                      "error_message": null,
+                      "duration_ms": 0.0,
+                      "metadata": {
+                        "backend_message": "Waited"
+                      }
+                    },
+                    {
+                      "action": {
+                        "type": "set_dialog_field",
+                        "dialog": "Scale Image",
+                        "field": "Width",
+                        "value": 256
+                      },
+                      "success": true,
+                      "state_changed": true,
+                      "dispatched": false,
+                      "effect_status": "UNKNOWN",
+                      "action_executable": true,
+                      "error_type": null,
+                      "error_message": null,
+                      "duration_ms": 0.0,
+                      "metadata": {
+                        "backend_message": "Dialog field updated"
+                      }
+                    },
+                    {
+                      "action": {
+                        "type": "set_dialog_field",
+                        "dialog": "Scale Image",
+                        "field": "Height",
+                        "value": 256
+                      },
+                      "success": true,
+                      "state_changed": true,
+                      "dispatched": false,
+                      "effect_status": "UNKNOWN",
+                      "action_executable": true,
+                      "error_type": null,
+                      "error_message": null,
+                      "duration_ms": 0.0,
+                      "metadata": {
+                        "backend_message": "Dialog field updated"
+                      }
+                    },
+                    {
+                      "action": {
+                        "type": "click_dialog_button",
+                        "dialog": "Scale Image",
+                        "button": "Scale"
+                      },
+                      "success": true,
+                      "state_changed": true,
+                      "dispatched": false,
+                      "effect_status": "UNKNOWN",
+                      "action_executable": true,
+                      "error_type": null,
+                      "error_message": null,
+                      "duration_ms": 0.0,
+                      "metadata": {
+                        "backend_message": "Clicked scale"
+                      }
+                    },
+                    {
+                      "action": {
+                        "type": "wait",
+                        "duration": 0.5
+                      },
+                      "success": true,
+                      "state_changed": false,
+                      "dispatched": false,
+                      "effect_status": "UNKNOWN",
+                      "action_executable": true,
+                      "error_type": null,
+                      "error_message": null,
+                      "duration_ms": 0.0,
+                      "metadata": {
+                        "backend_message": "Waited"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "evidence": [
+          {
+            "source": "trace.jsonl",
+            "line": 2,
+            "content": {
+              "error_type": "Parameter Error",
+              "step_eval": {
+                "step": 2,
+                "status": null,
+                "subgoal_id": "resize_image",
+                "subgoal_completed": false,
+                "diagnostic_signals": {
+                  "action_valid": true,
+                  "action_executable": true,
+                  "target_hit": true,
+                  "tool_match": true,
+                  "parameter_match": false,
+                  "dialog_confirmed": true,
+                  "state_changed": true,
+                  "subgoal_completed": false
+                },
+                "error_type": "Parameter Error",
+                "evidence": {
+                  "expected_width": 512,
+                  "actual_width": 256,
+                  "expected_height": 512,
+                  "actual_height": 256
+                },
+                "note": "Parameter mismatch: {'expected_width': 512, 'actual_width': 256, 'expected_height': 512, 'actual_height': 256}"
+              },
+              "execution_result": {
+                "success": true,
+                "action_executable": true,
+                "state_changed": true,
+                "effect_status": "PASS",
+                "effect_evidence": {
+                  "status": "PASS",
+                  "source": "mock_internal"
+                },
+                "primitive_results": [
+                  {
+                    "action": {
+                      "type": "open_menu",
+                      "path": "Image->Scale Image..."
+                    },
+                    "success": true,
+                    "state_changed": true,
+                    "dispatched": false,
+                    "effect_status": "UNKNOWN",
+                    "action_executable": true,
+                    "error_type": null,
+                    "error_message": null,
+                    "duration_ms": 0.0,
+                    "metadata": {
+                      "backend_message": "Atomic action executed"
+                    }
+                  },
+                  {
+                    "action": {
+                      "type": "wait",
+                      "duration": 0.5
+                    },
+                    "success": true,
+                    "state_changed": false,
+                    "dispatched": false,
+                    "effect_status": "UNKNOWN",
+                    "action_executable": true,
+                    "error_type": null,
+                    "error_message": null,
+                    "duration_ms": 0.0,
+                    "metadata": {
+                      "backend_message": "Waited"
+                    }
+                  },
+                  {
+                    "action": {
+                      "type": "set_dialog_field",
+                      "dialog": "Scale Image",
+                      "field": "Width",
+                      "value": 256
+                    },
+                    "success": true,
+                    "state_changed": true,
+                    "dispatched": false,
+                    "effect_status": "UNKNOWN",
+                    "action_executable": true,
+                    "error_type": null,
+                    "error_message": null,
+                    "duration_ms": 0.0,
+                    "metadata": {
+                      "backend_message": "Dialog field updated"
+                    }
+                  },
+                  {
+                    "action": {
+                      "type": "set_dialog_field",
+                      "dialog": "Scale Image",
+                      "field": "Height",
+                      "value": 256
+                    },
+                    "success": true,
+                    "state_changed": true,
+                    "dispatched": false,
+                    "effect_status": "UNKNOWN",
+                    "action_executable": true,
+                    "error_type": null,
+                    "error_message": null,
+                    "duration_ms": 0.0,
+                    "metadata": {
+                      "backend_message": "Dialog field updated"
+                    }
+                  },
+                  {
+                    "action": {
+                      "type": "click_dialog_button",
+                      "dialog": "Scale Image",
+                      "button": "Scale"
+                    },
+                    "success": true,
+                    "state_changed": true,
+                    "dispatched": false,
+                    "effect_status": "UNKNOWN",
+                    "action_executable": true,
+                    "error_type": null,
+                    "error_message": null,
+                    "duration_ms": 0.0,
+                    "metadata": {
+                      "backend_message": "Clicked scale"
+                    }
+                  },
+                  {
+                    "action": {
+                      "type": "wait",
+                      "duration": 0.5
+                    },
+                    "success": true,
+                    "state_changed": false,
+                    "dispatched": false,
+                    "effect_status": "UNKNOWN",
+                    "action_executable": true,
+                    "error_type": null,
+                    "error_message": null,
+                    "duration_ms": 0.0,
+                    "metadata": {
+                      "backend_message": "Waited"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "diagnosis_status": "FAILURE_OBSERVED"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "task_goal",
+      "to": "subgoal_open_image",
+      "relation": "contains"
+    },
+    {
+      "from": "task_goal",
+      "to": "subgoal_resize_image",
+      "relation": "contains"
+    },
+    {
+      "from": "subgoal_resize_image",
+      "to": "action_2",
+      "relation": "evaluates"
+    },
+    {
+      "from": "state_2_before",
+      "to": "action_2",
+      "relation": "observes_before"
+    },
+    {
+      "from": "action_2",
+      "to": "state_2_after",
+      "relation": "produces"
+    },
+    {
+      "from": "action_2",
+      "to": "failure_2",
+      "relation": "observed_failure"
+    },
+    {
+      "from": "task_goal",
+      "to": "subgoal_export_png",
+      "relation": "contains"
+    },
+    {
+      "from": "subgoal_export_png",
+      "to": "action_3",
+      "relation": "evaluates"
+    },
+    {
+      "from": "action_2",
+      "to": "action_3",
+      "relation": "precedes"
+    },
+    {
+      "from": "state_3_before",
+      "to": "action_3",
+      "relation": "observes_before"
+    },
+    {
+      "from": "action_3",
+      "to": "state_3_after",
+      "relation": "produces"
+    },
+    {
+      "from": "task_goal",
+      "to": "subgoal_step_4",
+      "relation": "contains"
+    },
+    {
+      "from": "subgoal_step_4",
+      "to": "action_4",
+      "relation": "evaluates"
+    },
+    {
+      "from": "action_3",
+      "to": "action_4",
+      "relation": "precedes"
+    },
+    {
+      "from": "state_4_before",
+      "to": "action_4",
+      "relation": "observes_before"
+    },
+    {
+      "from": "action_4",
+      "to": "state_4_after",
+      "relation": "produces"
+    },
+    {
+      "from": "failure_2",
+      "to": "artifact_final",
+      "relation": "causes"
+    },
+    {
+      "from": "task_goal",
+      "to": "execution_0",
+      "relation": "records"
+    },
+    {
+      "from": "task_goal",
+      "to": "execution_1",
+      "relation": "records"
+    },
+    {
+      "from": "task_goal",
+      "to": "execution_2",
+      "relation": "records"
+    },
+    {
+      "from": "action_2",
+      "to": "execution_2",
+      "relation": "recorded_as"
+    },
+    {
+      "from": "execution_2",
+      "to": "state_2_after",
+      "relation": "observed_after"
+    },
+    {
+      "from": "task_goal",
+      "to": "execution_3",
+      "relation": "records"
+    },
+    {
+      "from": "action_2",
+      "to": "execution_3",
+      "relation": "recorded_as"
+    },
+    {
+      "from": "execution_3",
+      "to": "state_2_after",
+      "relation": "observed_after"
+    },
+    {
+      "from": "task_goal",
+      "to": "execution_4",
+      "relation": "records"
+    },
+    {
+      "from": "action_2",
+      "to": "execution_4",
+      "relation": "recorded_as"
+    },
+    {
+      "from": "execution_4",
+      "to": "state_2_after",
+      "relation": "observed_after"
+    },
+    {
+      "from": "task_goal",
+      "to": "execution_5",
+      "relation": "records"
+    },
+    {
+      "from": "task_goal",
+      "to": "execution_6",
+      "relation": "records"
+    },
+    {
+      "from": "action_3",
+      "to": "execution_6",
+      "relation": "recorded_as"
+    },
+    {
+      "from": "execution_6",
+      "to": "state_3_after",
+      "relation": "observed_after"
+    },
+    {
+      "from": "task_goal",
+      "to": "execution_7",
+      "relation": "records"
+    },
+    {
+      "from": "action_3",
+      "to": "execution_7",
+      "relation": "recorded_as"
+    },
+    {
+      "from": "execution_7",
+      "to": "state_3_after",
+      "relation": "observed_after"
+    },
+    {
+      "from": "task_goal",
+      "to": "execution_8",
+      "relation": "records"
+    },
+    {
+      "from": "action_3",
+      "to": "execution_8",
+      "relation": "recorded_as"
+    },
+    {
+      "from": "execution_8",
+      "to": "state_3_after",
+      "relation": "observed_after"
+    },
+    {
+      "from": "task_goal",
+      "to": "execution_9",
+      "relation": "records"
+    },
+    {
+      "from": "action_3",
+      "to": "execution_9",
+      "relation": "recorded_as"
+    },
+    {
+      "from": "execution_9",
+      "to": "state_3_after",
+      "relation": "observed_after"
+    },
+    {
+      "from": "task_goal",
+      "to": "execution_10",
+      "relation": "records"
+    },
+    {
+      "from": "task_goal",
+      "to": "execution_11",
+      "relation": "records"
+    },
+    {
+      "from": "action_4",
+      "to": "execution_11",
+      "relation": "recorded_as"
+    },
+    {
+      "from": "execution_11",
+      "to": "state_4_after",
+      "relation": "observed_after"
+    },
+    {
+      "from": "task_goal",
+      "to": "execution_12",
+      "relation": "records"
+    },
+    {
+      "from": "action_4",
+      "to": "execution_12",
+      "relation": "recorded_as"
+    },
+    {
+      "from": "execution_12",
+      "to": "state_4_after",
+      "relation": "observed_after"
+    },
+    {
+      "from": "task_goal",
+      "to": "execution_13",
+      "relation": "records"
+    },
+    {
+      "from": "action_4",
+      "to": "execution_13",
+      "relation": "recorded_as"
+    },
+    {
+      "from": "execution_13",
+      "to": "state_4_after",
+      "relation": "observed_after"
+    },
+    {
+      "from": "task_goal",
+      "to": "execution_14",
+      "relation": "records"
+    },
+    {
+      "from": "action_4",
+      "to": "execution_14",
+      "relation": "recorded_as"
+    },
+    {
+      "from": "execution_14",
+      "to": "state_4_after",
+      "relation": "observed_after"
+    },
+    {
+      "from": "task_goal",
+      "to": "execution_15",
+      "relation": "records"
+    },
+    {
+      "from": "action_4",
+      "to": "execution_15",
+      "relation": "recorded_as"
+    },
+    {
+      "from": "execution_15",
+      "to": "state_4_after",
+      "relation": "observed_after"
+    },
+    {
+      "from": "task_goal",
+      "to": "diagnosis",
+      "relation": "diagnosed_as"
+    },
+    {
+      "from": "failure_2",
+      "to": "diagnosis",
+      "relation": "supports"
+    },
+    {
+      "from": "artifact_final",
+      "to": "diagnosis",
+      "relation": "evaluated_evidence"
+    },
+    {
+      "from": "state_2_after",
+      "to": "diagnosis",
+      "relation": "supports"
+    },
+    {
+      "from": "state_3_after",
+      "to": "artifact_final",
+      "relation": "exported_artifact"
+    }
+  ]
+}

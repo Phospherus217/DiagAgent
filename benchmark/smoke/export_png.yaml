@@ -1,0 +1,15 @@
+schema_version: "2.0"
+task_id: da_smoke_export_png
+task_family: file_io
+difficulty: easy
+instruction: "Open the input image and export it as PNG without resizing."
+initial_asset: ../assets/input_001.jpg
+allowed_observations: [screenshot, manual_ui_bbox]
+allowed_actions: [export_file, wait, stop]
+max_steps: 8
+output_name: output.png
+reference_actions:
+  - {type: export_file, path: output.png}
+evaluation:
+  required_subgoals: [image_loaded, artifact_exported]
+  final: {exists: true, nonempty: true, format: PNG, size: [800, 600]}

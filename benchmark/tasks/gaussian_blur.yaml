@@ -1,0 +1,48 @@
+task_id: diag_04_gaussian_blur
+app: gimp
+task_family: filter_operation
+capability: Filter
+difficulty: medium
+instruction: "Open the input image, apply Gaussian Blur with radius 5, and export it as PNG."
+initial_state:
+  input_file: benchmark/assets/input_001.jpg
+  output_file: output.png
+  window_size: [1280, 720]
+allowed_actions:
+  - open_menu
+  - set_dialog_field
+  - click_dialog_button
+  - apply_filter
+  - export_file
+  - wait
+  - stop
+subgoals:
+  - id: open_image
+    order: 1
+    type: ui_state
+    description: "Input image is loaded in GIMP canvas."
+    expected_state:
+      image_loaded: true
+  - id: apply_blur
+    order: 2
+    type: parameter
+    description: "Gaussian Blur filter is applied with radius 5."
+    expected_action:
+      action_type: [apply_filter]
+    expected_artifact_change:
+      filter_name: Gaussian Blur
+      radius: 5
+  - id: export_png
+    order: 3
+    type: artifact
+    description: "Blurred image is exported as PNG."
+    expected_artifact:
+      exists: true
+      format: png
+success_criteria:
+  final:
+    output_exists: true
+    output_format: png
+    file_nonempty: true
+    blur_metric_change: true
+max_steps: 10

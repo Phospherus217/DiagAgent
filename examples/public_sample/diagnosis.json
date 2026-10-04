@@ -1,0 +1,330 @@
+{
+  "diagnosis_version": "0.2",
+  "diagnosis_id": "ca62df3f83b8a432c121b1a82b3c3a0e3028d4f9a77a979e398ad8277c74de2f",
+  "run_id": "public_sample",
+  "first_failure_step": 2,
+  "failure_type": "Parameter Error",
+  "responsibility": {
+    "primary": "Agent",
+    "confidence": 0.95,
+    "alternatives": []
+  },
+  "suggested_repair": "Regenerate action with required, valid parameters.",
+  "warnings": [],
+  "failure": true,
+  "step": 2,
+  "type": "Parameter Error",
+  "layer": "Agent",
+  "confidence": "high",
+  "confidence_score": 0.92,
+  "explanation": "Failure happened at Step 2. Evidence source: trace.jsonl",
+  "v02_attribution": {
+    "failure_layer": "ACTION",
+    "responsibility": "Agent",
+    "evidence": [
+      {
+        "source": "trace.jsonl",
+        "line": 2,
+        "content": {
+          "error_type": "Parameter Error",
+          "step_eval": {
+            "step": 2,
+            "status": null,
+            "subgoal_id": "resize_image",
+            "subgoal_completed": false,
+            "diagnostic_signals": {
+              "action_valid": true,
+              "action_executable": true,
+              "target_hit": true,
+              "tool_match": true,
+              "parameter_match": false,
+              "dialog_confirmed": true,
+              "state_changed": true,
+              "subgoal_completed": false
+            },
+            "error_type": "Parameter Error",
+            "evidence": {
+              "expected_width": 512,
+              "actual_width": 256,
+              "expected_height": 512,
+              "actual_height": 256
+            },
+            "note": "Parameter mismatch: {'expected_width': 512, 'actual_width': 256, 'expected_height': 512, 'actual_height': 256}"
+          },
+          "execution_result": {
+            "success": true,
+            "action_executable": true,
+            "state_changed": true,
+            "effect_status": "PASS",
+            "effect_evidence": {
+              "status": "PASS",
+              "source": "mock_internal"
+            },
+            "primitive_results": [
+              {
+                "action": {
+                  "type": "open_menu",
+                  "path": "Image->Scale Image..."
+                },
+                "success": true,
+                "state_changed": true,
+                "dispatched": false,
+                "effect_status": "UNKNOWN",
+                "action_executable": true,
+                "error_type": null,
+                "error_message": null,
+                "duration_ms": 0.0,
+                "metadata": {
+                  "backend_message": "Atomic action executed"
+                }
+              },
+              {
+                "action": {
+                  "type": "wait",
+                  "duration": 0.5
+                },
+                "success": true,
+                "state_changed": false,
+                "dispatched": false,
+                "effect_status": "UNKNOWN",
+                "action_executable": true,
+                "error_type": null,
+                "error_message": null,
+                "duration_ms": 0.0,
+                "metadata": {
+                  "backend_message": "Waited"
+                }
+              },
+              {
+                "action": {
+                  "type": "set_dialog_field",
+                  "dialog": "Scale Image",
+                  "field": "Width",
+                  "value": 256
+                },
+                "success": true,
+                "state_changed": true,
+                "dispatched": false,
+                "effect_status": "UNKNOWN",
+                "action_executable": true,
+                "error_type": null,
+                "error_message": null,
+                "duration_ms": 0.0,
+                "metadata": {
+                  "backend_message": "Dialog field updated"
+                }
+              },
+              {
+                "action": {
+                  "type": "set_dialog_field",
+                  "dialog": "Scale Image",
+                  "field": "Height",
+                  "value": 256
+                },
+                "success": true,
+                "state_changed": true,
+                "dispatched": false,
+                "effect_status": "UNKNOWN",
+                "action_executable": true,
+                "error_type": null,
+                "error_message": null,
+                "duration_ms": 0.0,
+                "metadata": {
+                  "backend_message": "Dialog field updated"
+                }
+              },
+              {
+                "action": {
+                  "type": "click_dialog_button",
+                  "dialog": "Scale Image",
+                  "button": "Scale"
+                },
+                "success": true,
+                "state_changed": true,
+                "dispatched": false,
+                "effect_status": "UNKNOWN",
+                "action_executable": true,
+                "error_type": null,
+                "error_message": null,
+                "duration_ms": 0.0,
+                "metadata": {
+                  "backend_message": "Clicked scale"
+                }
+              },
+              {
+                "action": {
+                  "type": "wait",
+                  "duration": 0.5
+                },
+                "success": true,
+                "state_changed": false,
+                "dispatched": false,
+                "effect_status": "UNKNOWN",
+                "action_executable": true,
+                "error_type": null,
+                "error_message": null,
+                "duration_ms": 0.0,
+                "metadata": {
+                  "backend_message": "Waited"
+                }
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "evidence": [
+    {
+      "source": "trace.jsonl",
+      "line": 2,
+      "content": {
+        "error_type": "Parameter Error",
+        "step_eval": {
+          "step": 2,
+          "status": null,
+          "subgoal_id": "resize_image",
+          "subgoal_completed": false,
+          "diagnostic_signals": {
+            "action_valid": true,
+            "action_executable": true,
+            "target_hit": true,
+            "tool_match": true,
+            "parameter_match": false,
+            "dialog_confirmed": true,
+            "state_changed": true,
+            "subgoal_completed": false
+          },
+          "error_type": "Parameter Error",
+          "evidence": {
+            "expected_width": 512,
+            "actual_width": 256,
+            "expected_height": 512,
+            "actual_height": 256
+          },
+          "note": "Parameter mismatch: {'expected_width': 512, 'actual_width': 256, 'expected_height': 512, 'actual_height': 256}"
+        },
+        "execution_result": {
+          "success": true,
+          "action_executable": true,
+          "state_changed": true,
+          "effect_status": "PASS",
+          "effect_evidence": {
+            "status": "PASS",
+            "source": "mock_internal"
+          },
+          "primitive_results": [
+            {
+              "action": {
+                "type": "open_menu",
+                "path": "Image->Scale Image..."
+              },
+              "success": true,
+              "state_changed": true,
+              "dispatched": false,
+              "effect_status": "UNKNOWN",
+              "action_executable": true,
+              "error_type": null,
+              "error_message": null,
+              "duration_ms": 0.0,
+              "metadata": {
+                "backend_message": "Atomic action executed"
+              }
+            },
+            {
+              "action": {
+                "type": "wait",
+                "duration": 0.5
+              },
+              "success": true,
+              "state_changed": false,
+              "dispatched": false,
+              "effect_status": "UNKNOWN",
+              "action_executable": true,
+              "error_type": null,
+              "error_message": null,
+              "duration_ms": 0.0,
+              "metadata": {
+                "backend_message": "Waited"
+              }
+            },
+            {
+              "action": {
+                "type": "set_dialog_field",
+                "dialog": "Scale Image",
+                "field": "Width",
+                "value": 256
+              },
+              "success": true,
+              "state_changed": true,
+              "dispatched": false,
+              "effect_status": "UNKNOWN",
+              "action_executable": true,
+              "error_type": null,
+              "error_message": null,
+              "duration_ms": 0.0,
+              "metadata": {
+                "backend_message": "Dialog field updated"
+              }
+            },
+            {
+              "action": {
+                "type": "set_dialog_field",
+                "dialog": "Scale Image",
+                "field": "Height",
+                "value": 256
+              },
+              "success": true,
+              "state_changed": true,
+              "dispatched": false,
+              "effect_status": "UNKNOWN",
+              "action_executable": true,
+              "error_type": null,
+              "error_message": null,
+              "duration_ms": 0.0,
+              "metadata": {
+                "backend_message": "Dialog field updated"
+              }
+            },
+            {
+              "action": {
+                "type": "click_dialog_button",
+                "dialog": "Scale Image",
+                "button": "Scale"
+              },
+              "success": true,
+              "state_changed": true,
+              "dispatched": false,
+              "effect_status": "UNKNOWN",
+              "action_executable": true,
+              "error_type": null,
+              "error_message": null,
+              "duration_ms": 0.0,
+              "metadata": {
+                "backend_message": "Clicked scale"
+              }
+            },
+            {
+              "action": {
+                "type": "wait",
+                "duration": 0.5
+              },
+              "success": true,
+              "state_changed": false,
+              "dispatched": false,
+              "effect_status": "UNKNOWN",
+              "action_executable": true,
+              "error_type": null,
+              "error_message": null,
+              "duration_ms": 0.0,
+              "metadata": {
+                "backend_message": "Waited"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "diagnosis_status": "FAILURE_OBSERVED"
+}

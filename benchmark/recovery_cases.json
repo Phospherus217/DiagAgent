@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "evidence_kind": "deterministic_fixture",
+  "task": "benchmark/tasks/resize_image.yaml",
+  "provenance": "src/diagagent/experiments/portfolio_protocol.py:FAMILIES; mock boundary injection follows diagnosis/injection.py",
+  "cases": [
+    {"case_id": "MATCHED-PARAMETER", "family": "parameter", "original_failure": "Parameter Error", "first_failure_step": 2, "fixture_fault": "Persistent oracle resize action: 256x256 instead of 512x512; retained on direct retry."},
+    {"case_id": "MATCHED-DIALOG", "family": "dialog", "original_failure": "Dialog Operation Error", "first_failure_step": 2, "fixture_fault": "One-time mock resize boundary exception; cleared equally for direct retry and constrained recovery. Does not simulate an actual OS dialog."},
+    {"case_id": "MATCHED-FILEIO", "family": "fileio", "original_failure": "File I/O Error", "first_failure_step": 3, "fixture_fault": "One-time mock export boundary exception; cleared equally for direct retry and constrained recovery. Does not acquire an OS file lock."}
+  ]
+}

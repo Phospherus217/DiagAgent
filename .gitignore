@@ -1,0 +1,10 @@
+__pycache__/
+.pytest_cache/
+.venv/
+.venv*/
+.validation/
+build/
+dist/
+*.egg-info/
+runs/
+configs/desktop.local.yaml

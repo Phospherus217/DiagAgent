@@ -1,0 +1,16 @@
+{
+  "task_id": "diag_01_resize",
+  "instruction": "Open the input image, resize it to 512x512 pixels, and export it as PNG.",
+  "task_family": "canvas_geometry",
+  "difficulty": "easy",
+  "allowed_actions": [
+    "open_menu",
+    "set_dialog_field",
+    "click_dialog_button",
+    "resize_image",
+    "export_file",
+    "wait",
+    "stop"
+  ],
+  "max_steps": 10
+}

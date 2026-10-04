@@ -1,0 +1,29 @@
+{
+  "schema_version": "2.0",
+  "backend": "mock",
+  "agent_type": "oracle",
+  "evidence_kind": "deterministic_fixture",
+  "config": {
+    "gimp_executable": null,
+    "profile_id": "gimp32-en-dpi96-v1",
+    "language": "en_US",
+    "window_size": [
+      1440,
+      900
+    ],
+    "expected_dpi": 96,
+    "expected_screen_size": null,
+    "startup_timeout": 45,
+    "gui_timeout": 10,
+    "focus_timeout": 5,
+    "run_timeout": 180,
+    "max_primitives": 100,
+    "max_format_repairs": 1
+  },
+  "start_time": "2026-10-04T12:08:15.473562+00:00",
+  "trace_layout": "trace.jsonl semantic records + events.jsonl atomic lifecycle",
+  "source_sha256": "a960bc2f916785bfc27416d582e8706356cebbb74551c5a1681f451c37a6cf7e",
+  "config_sha256": "b89a348b155a16d6c779280d5955e159c5df20241fcda3365d09a06f6b2fd8a7",
+  "task_sha256": "0f107cd7be8501aff6374551389736f82b7151221f7306cfc1f2ff8f1f727f07",
+  "real_gui_acceptance": false
+}

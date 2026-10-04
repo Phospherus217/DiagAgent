@@ -1,0 +1,49 @@
+task_id: diag_06_text_export
+app: gimp
+task_family: file_workflow
+capability: File Workflow
+difficulty: easy_medium
+instruction: "Open the input image, add 'Watermark' text, and export it as PNG to output.png."
+initial_state:
+  input_file: benchmark/assets/input_001.jpg
+  output_file: output.png
+  window_size: [1280, 720]
+allowed_actions:
+  - click_toolbar_icon
+  - select_tool
+  - add_text
+  - open_menu
+  - set_dialog_field
+  - click_dialog_button
+  - export_file
+  - wait
+  - stop
+subgoals:
+  - id: open_image
+    order: 1
+    type: ui_state
+    description: "Input image is loaded in GIMP canvas."
+    expected_state:
+      image_loaded: true
+  - id: add_watermark
+    order: 2
+    type: canvas_operation
+    description: "Text 'Watermark' is added to canvas."
+    expected_action:
+      action_type: [add_text]
+    expected_artifact_change:
+      text: Watermark
+      font_size: 28
+  - id: export_png
+    order: 3
+    type: artifact
+    description: "Export dialog completed and PNG file saved to disk."
+    expected_artifact:
+      exists: true
+      format: png
+success_criteria:
+  final:
+    output_exists: true
+    output_format: png
+    file_nonempty: true
+max_steps: 10

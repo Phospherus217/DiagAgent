@@ -1,0 +1,55 @@
+task_id: diag_05_crop_text
+app: gimp
+task_family: multi_step_composition
+capability: Multi-step Planning
+difficulty: medium_hard
+instruction: "Open the input image, crop the center region, add 'Demo' text, and export it as PNG."
+initial_state:
+  input_file: benchmark/assets/input_001.jpg
+  output_file: output.png
+  window_size: [1280, 720]
+allowed_actions:
+  - click_toolbar_icon
+  - select_tool
+  - drag
+  - hotkey
+  - crop_canvas
+  - add_text
+  - export_file
+  - wait
+  - stop
+subgoals:
+  - id: open_image
+    order: 1
+    type: ui_state
+    description: "Input image is loaded in GIMP canvas."
+    expected_state:
+      image_loaded: true
+  - id: crop_center
+    order: 2
+    type: canvas_operation
+    description: "Center region is cropped on the canvas."
+    expected_action:
+      action_type: [crop_canvas]
+  - id: add_text
+    order: 3
+    type: canvas_operation
+    description: "Text 'Demo' is added onto the cropped canvas."
+    expected_action:
+      action_type: [add_text]
+    expected_artifact_change:
+      text: Demo
+      font_size: 32
+  - id: export_png
+    order: 4
+    type: artifact
+    description: "Final composited image is exported as PNG."
+    expected_artifact:
+      exists: true
+      format: png
+success_criteria:
+  final:
+    output_exists: true
+    output_format: png
+    file_nonempty: true
+max_steps: 12
